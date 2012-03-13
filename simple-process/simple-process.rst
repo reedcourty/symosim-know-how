@@ -7,4 +7,8 @@ Egyszerû folyamat létrehozása, futtatása
 
 A projekt ``src/main/resources`` könyvtárára jobb klikk, *New > BPMN2 process*, File name: ``akarmi``, [Finish]
 
-Vegyünk fel egy *Script Taskot*, és egy *End Eventet*, húzzuk be a *Sequence Flow*-t. Mentsük el a folyamatot!
+Vegyünk fel egy *Script Taskot*, és egy *End Eventet*, húzzuk be a *Sequence Flow*-t. Az eredmény kb. így néz ki:
+
+.. image:: figures/bpmn.png
+
+Mentsük el a folyamatot!
