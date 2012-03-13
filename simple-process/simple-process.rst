@@ -9,6 +9,6 @@ A projekt ``src/main/resources`` könyvtárára jobb klikk, *New > BPMN2 process*, 
 
 Vegyünk fel egy *Script Taskot*, és egy *End Eventet*, húzzuk be a *Sequence Flow*-t. Az eredmény kb. így néz ki:
 
-.. image:: figures/bpmn.png
+.. image:: https://github.com/reedcourty/symosim-know-how/raw/master/simple-process/figures/bpmn.png
 
 Mentsük el a folyamatot!
