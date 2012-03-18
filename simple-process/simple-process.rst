@@ -59,3 +59,8 @@ Tartalma:
 Ezután a ``myprocess.bpmn``-t megnyitva, a *Properties* fülön ``Id``-nak adjuk meg az előző osztályban szereplő ``com.github.reedcourty.symosim_know_how.simple_process.bpmn.myprocess`` értéket.
 
 Ha mindent jól csináltunk, akkor a ``ProcessMain``-t futtatva nem kapunk hibát.
+
+Állományok:
+
+https://raw.github.com/reedcourty/symosim-know-how/master/simple-process/src/main/resources/myprocess.bpmn
+https://raw.github.com/reedcourty/symosim-know-how/master/simple-process/src/main/java/com/github/reedcourty/symosim_know_how/simple_process/ProcessMain.java
