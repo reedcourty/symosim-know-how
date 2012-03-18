@@ -1,14 +1,61 @@
 ========================================
-Egyszer˚ folyamat lÈtrehoz·sa, futtat·sa
+Egyszer≈± folyamat l√©trehoz√°sa, futtat√°sa
 ========================================
 
-1. lÈpÈs - BPMN lÈtrehoz·sa
+1. l√©p√©s - BPMN l√©trehoz√°sa
 ---------------------------
 
-A projekt ``src/main/resources`` kˆnyvt·r·ra jobb klikk, *New > BPMN2 process*, File name: ``akarmi``, [Finish]
+A projekt ``src/main/resources`` k√∂nyvt√°r√°ra jobb klikk, *New > BPMN2 process*, File name: ``myprocess``, [Finish]
 
-Vegy¸nk fel egy *Script Taskot*, Ès egy *End Eventet*, h˙zzuk be a *Sequence Flow*-t. Az eredmÈny kb. Ìgy nÈz ki:
+Vegy√ºnk fel egy *Script Taskot*, √©s egy *End Eventet*, h√∫zzuk be a *Sequence Flow*-t. Az eredm√©ny kb. √≠gy n√©z ki:
 
 .. image:: https://github.com/reedcourty/symosim-know-how/raw/master/simple-process/figures/bpmn.png
 
-Ments¸k el a folyamatot!
+Ments√ºk el a folyamatot!
+
+Az ``src/main/java`` k√∂nyvt√°rra jobb klikk, *New > Package*, Name: pl. com.github.reedcourty.symosim_know_how.simple_process
+
+http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html
+
+Ezut√°n jobb klikk az √∫j package-re, *New > Class*, Name: ``ProcessMain``
+
+Tartalma:
+
+::
+
+   package com.github.reedcourty.symosim_know_how.simple_process;
+
+   import org.drools.KnowledgeBase;
+   import org.drools.builder.KnowledgeBuilder;
+   import org.drools.builder.KnowledgeBuilderFactory;
+   import org.drools.builder.ResourceType;
+   import org.drools.io.ResourceFactory;
+   import org.drools.runtime.StatefulKnowledgeSession;
+
+   import org.drools.logger.KnowledgeRuntimeLogger;
+   import org.drools.logger.KnowledgeRuntimeLoggerFactory;
+
+   public class ProcessMain {
+
+      public static final void main(String[] args) throws Exception {
+         // load up the knowledge base
+         KnowledgeBase kbase = readKnowledgeBase();
+         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+         KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger(ksession, "test", 1000);
+         
+         ksession.startProcess("com.github.reedcourty.symosim_know_how.simple_process.bpmn.myprocess");
+         
+         logger.close();
+      }
+   
+      private static KnowledgeBase readKnowledgeBase() throws Exception {
+         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+         kbuilder.add(ResourceFactory.newClassPathResource("myprocess.bpmn"), ResourceType.BPMN2);
+         return kbuilder.newKnowledgeBase();
+      }
+      
+   }
+
+Ezut√°n a ``myprocess.bpmn``-t megnyitva, a *Properties* f√ºl√∂n ``Id``-nak adjuk meg az el≈ëz≈ë oszt√°lyban szerepl≈ë ``com.github.reedcourty.symosim_know_how.simple_process.bpmn.myprocess`` √©rt√©ket.
+
+Ha mindent j√≥l csin√°ltunk, akkor a ``ProcessMain``-t futtatva nem kapunk hib√°t.
